@@ -23,10 +23,10 @@ def findtomcat():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = __doc__ )
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "attribute",
-        choices=['threads','pid','memper'],
+        choices=['threads', 'pid', 'memper'],
         )
     args = parser.parse_args()
     toms = findtomcat()
