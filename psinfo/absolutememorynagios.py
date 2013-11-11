@@ -29,7 +29,15 @@ parser.add_argument(
 args = parser.parse_args()
 
 #have to use avail_phymem to support psutils v 0.5 in debian wheezy.
-physmem = psutil.avail_phymem() / MB   # available physical mem in megabytes.
+try:
+    physmem = psutil.virtual_memory().available / MB  #psutils >= 0.6
+except AttributeError:  # have to use old api
+    physmem = (( psutil.avail_phymem() + 
+                 psutil.phymem_buffers() +
+                 psutil.cached_phymem() 
+                ) / MB   
+              )
+
 if args.c >= args.w:
     print ('UNKNOWN: critical level must be less than warning level')
     sys.exit(3)
