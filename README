@@ -1,1 +1,5 @@
-Find out information about processes
+Find out information about processes.
+
+Includes some nagios checks.
+Uses the psutil library.
+
